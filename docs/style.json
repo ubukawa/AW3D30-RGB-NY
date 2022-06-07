@@ -3,7 +3,7 @@
   "zoom": 8,
   "center": [-75.17395,39.930801],
   "sprite": "https://ubukawa.github.io/osm-neighbor/sprite/sprite",
-  "glyphs": https://ubukawa.github.io/osm-neighbor/glyphs/{fontstack}/{range}.pbf",
+  "glyphs": "https://ubukawa.github.io/osm-neighbor/glyphs/{fontstack}/{range}.pbf",
   "sources": {
       "v": {
       "attribution": "Map by OSM, OpenStreetMap contributors",
