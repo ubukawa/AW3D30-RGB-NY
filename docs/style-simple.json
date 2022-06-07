@@ -1,0 +1,377 @@
+{
+  "version": 8,
+  "zoom": 8,
+  "center": [-75.17395,39.930801],
+  "sprite": "https://ubukawa.github.io/osm-neighbor/sprite/sprite",
+  "glyphs": "https://ubukawa.github.io/osm-neighbor/glyphs/{fontstack}/{range}.pbf",
+  "sources": {
+      "v": {
+      "attribution": "Map by OSM, OpenStreetMap contributors",
+      "maxzoom": 13,
+      "tiles": [
+        "https://ubukawa.github.io/osm-neighbor/osm-ny/{z}/{x}/{y}.pbf"
+      ],
+      "type": "vector"
+    },
+      "terrainSource": {
+        "type": "raster-dem",
+        "tiles": ["https://ubukawa.github.io/AW3D30-RGB-NY/zxy/{z}/{x}/{y}.png"],
+        "attribution": "RGB Elevation tile from ALOS 3D DEM (JAXA)",
+        "tileSize": 256,
+        "minzoom": 4,
+        "maxzoom": 11
+      },
+      "hillshadeSource": {
+        "type": "raster-dem",
+        "tiles": ["https://ubukawa.github.io/AW3D30-RGB-NY/zxy/{z}/{x}/{y}.png"],
+        "attribution": "RGB Elevation tile from ALOS 3D DEM (JAXA)",
+        "tileSize": 256,
+        "minzoom": 4,
+        "maxzoom": 11
+      }
+  },
+  "layers": [
+   {
+      "id": "background",
+      "paint": {
+        "background-color": [
+          "rgb",
+          245,
+          245,
+          245
+        ]
+      },
+      "type": "background"
+    },
+    {
+      "filter": [
+        "match",
+        [
+          "geometry-type"
+        ],
+        [
+          "Polygon",
+          "MultiPolygon"
+        ],
+        true,
+        false
+      ],
+      "id": "pg-landuse",
+      "paint": {
+        "fill-color": [
+          "rgb",
+          240,
+          244,
+          195
+        ]
+      },
+      "source": "v",
+      "source-layer": "landuse",
+      "type": "fill"
+    },
+    {
+      "filter": [
+        "match",
+        [
+          "geometry-type"
+        ],
+        [
+          "Polygon",
+          "MultiPolygon"
+        ],
+        true,
+        false
+      ],
+      "id": "pg-boundary",
+      "paint": {
+        "fill-color": [
+          "rgb",
+          255,
+          205,
+          210
+        ]
+      },
+      "source": "v",
+      "source-layer": "boundary",
+      "type": "fill"
+    },
+
+    {
+      "filter": [
+        "match",
+        [
+          "geometry-type"
+        ],
+        [
+          "Polygon",
+          "MultiPolygon"
+        ],
+        true,
+        false
+      ],
+      "id": "pg-road",
+      "paint": {
+        "fill-color": [
+          "rgb",
+          178,
+          223,
+          219
+        ]
+      },
+      "source": "v",
+      "source-layer": "road",
+      "type": "fill"
+    },
+     {
+      "filter": [
+        "match",
+        [
+          "geometry-type"
+        ],
+        [
+          "LineString",
+          "MultiLineString"
+        ],
+        true,
+        false
+      ],
+      "id": "ls-water",
+      "paint": {
+        "line-color": [
+          "match",
+          [
+            "get",
+            "natural"
+          ],
+          "coastline",
+          [
+            "rgb",
+            33,
+            150,
+            243
+          ],
+          [
+            "rgb",
+            187,
+            222,
+            251
+          ]
+        ]
+      },
+      "source": "v",
+      "source-layer": "water",
+      "type": "line"
+    },
+    {
+      "filter": [
+        "match",
+        [
+          "get",
+          "natural"
+        ],
+        "wetland",
+        false,
+        [
+          "match",
+          [
+            "geometry-type"
+          ],
+          [
+            "Polygon",
+            "MultiPolygon"
+          ],
+          true,
+          false
+        ]
+      ],
+      "id": "pg-water",
+      "paint": {
+        "fill-color": [
+          "rgb",
+          187,
+          222,
+          251
+        ]
+      },
+      "source": "v",
+      "source-layer": "water",
+      "type": "fill"
+    },
+    {
+      "filter": [
+        "match",
+        [
+          "geometry-type"
+        ],
+        [
+          "LineString",
+          "MultiLineString"
+        ],
+        true,
+        false
+      ],
+      "id": "ls-building",
+      "paint": {
+        "line-color": [
+          "rgb",
+          183,
+          174,
+          174
+        ]
+      },
+      "source": "v",
+      "source-layer": "building",
+      "type": "line"
+    },
+    {
+      "filter": [
+        "match",
+        [
+          "geometry-type"
+        ],
+        [
+          "Polygon",
+          "MultiPolygon"
+        ],
+        [
+          "match",
+          [
+            "get",
+            "layer"
+          ],
+          [
+            "-1",
+            "-2",
+            "-3",
+            "-4",
+            "-5"
+          ],
+          false,
+          [
+            "match",
+            [
+              "get",
+              "building"
+            ],
+            [
+              "train_station",
+              "roof"
+            ],
+            false,
+            true
+          ]
+        ],
+        false
+      ],
+      "id": "pg-building-shadow",
+      "minzoom": 16,
+      "paint": {
+        "fill-color": [
+          "rgb",
+          131,
+          124,
+          124
+        ],
+        "fill-translate": [
+          2,
+          2
+        ]
+      },
+      "source": "v",
+      "source-layer": "building",
+      "type": "fill"
+    },
+    {
+      "filter": [
+        "match",
+        [
+          "get",
+          "building"
+        ],
+        [
+          "train_station",
+          "roof"
+        ],
+        false,
+        [
+          "match",
+          [
+            "geometry-type"
+          ],
+          [
+            "Polygon",
+            "MultiPolygon"
+          ],
+          true,
+          false
+        ]
+      ],
+      "id": "pg-building",
+      "paint": {
+        "fill-extrusion-color": [
+          "match",
+          [
+            "get",
+            "layer"
+          ],
+          [
+            "-1",
+            "-2",
+            "-3",
+            "-4",
+            "-5"
+          ],
+          [
+            "rgb",
+            184,
+            163,
+            165
+          ],
+          [
+            "rgb",
+            222,
+            215,
+            215
+          ]
+        ],
+        "fill-extrusion-height": [
+          "max",
+          [
+            "to-number",
+            [
+              "get",
+              "height"
+            ]
+          ],
+          [
+            "*",
+            [
+              "to-number",
+              [
+                "get",
+                "building:levels"
+              ]
+            ],
+            3.66
+          ],
+          5
+        ],
+        "fill-extrusion-opacity": 0.7
+      },
+      "source": "v",
+      "source-layer": "building",
+      "type": "fill-extrusion"
+    },
+      {
+        "id": "hills",
+        "type": "hillshade",
+        "source": "hillshadeSource",
+        "layout": {"visibility": "visible"},
+        "paint": {"hillshade-shadow-color": "#473B24"}
+      }
+  ],
+    "terrain":{
+      "source": "terrainSource",
+      "exaggeration": 1
+    }
+}
