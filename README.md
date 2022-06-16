@@ -7,7 +7,7 @@ RGB elevation tile (ZL4-11) from AW3D30  for New York City and its surroundings
 	* interval: 0.1
 	* Terefore, height = -10000 + ((R * 256 * 256 + G * 256 + B) * 0.1)
 * Zoom level: from 4 to 11
-* Coverage: 5 degree by 5 degree around New York City (W75-70, N40-45)
+* Coverage: 15 degree by 15 degree around New York City (W80-65, N35-50)
 * Disclaimer
 	* The coverage of this data does not necessarily imply any territory border among countries. 
 	* We hold no liability for any consequence caused by the use of the Data or by the quality thereof. 
